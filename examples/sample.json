@@ -1,0 +1,183 @@
+{
+  "doctor": {
+    "name": "Dr. Arun Nair",
+    "credentials": "MBBS, MD (Internal Medicine)",
+    "registration_number": "KMC 12345",
+    "phone": "+91 98765 43210",
+    "email": "doctor@example.invalid"
+  },
+  "clinic": {
+    "name": "Clavis Medical Clinic",
+    "address": "Near City Center, Kannur, Kerala",
+    "phone": "+91 98765 43210",
+    "email": "clinic@example.invalid"
+  },
+  "patient": {
+    "name": "John Mathew",
+    "id": "CLV-000567",
+    "age": 34,
+    "gender": "Male",
+    "phone": "+91 98765 43210"
+  },
+  "plan": {
+    "id": "TP-2026-00123",
+    "date": "09 Oct 2026",
+    "title": "Personalized Care Plan",
+    "subtitle": "A summary of your diagnosis, treatment, test results and next steps for better health.",
+    "diagnoses": [
+      "Type 2 Diabetes Mellitus (uncontrolled)",
+      "Hypertension",
+      "Dyslipidemia",
+      "Vitamin D deficiency"
+    ],
+    "lab_results": [
+      {
+        "name": "Fasting Blood Sugar",
+        "result": "168",
+        "reference_range": "70–99",
+        "unit": "mg/dL",
+        "status": "High"
+      },
+      {
+        "name": "HbA1c",
+        "result": "8.2",
+        "reference_range": "< 5.7",
+        "unit": "%",
+        "status": "High"
+      },
+      {
+        "name": "Total Cholesterol",
+        "result": "212",
+        "reference_range": "< 200",
+        "unit": "mg/dL",
+        "status": "High"
+      },
+      {
+        "name": "LDL Cholesterol",
+        "result": "113",
+        "reference_range": "< 100",
+        "unit": "mg/dL",
+        "status": "Borderline"
+      },
+      {
+        "name": "HDL Cholesterol",
+        "result": "36",
+        "reference_range": "> 40",
+        "unit": "mg/dL",
+        "status": "Low"
+      },
+      {
+        "name": "Triglycerides",
+        "result": "313",
+        "reference_range": "< 150",
+        "unit": "mg/dL",
+        "status": "High"
+      },
+      {
+        "name": "Vitamin D (25-OH)",
+        "result": "18",
+        "reference_range": "30–100",
+        "unit": "ng/mL",
+        "status": "Low"
+      }
+    ],
+    "lab_summary": "Elevated blood sugar, HbA1c, cholesterol and triglycerides indicate poor glycemic and lipid control. Vitamin D levels are low.",
+    "medications": [
+      {
+        "name": "Metformin",
+        "strength": "500 mg",
+        "dose": "1 tablet",
+        "frequency": "Twice daily (after meals)",
+        "duration": "3 months",
+        "instructions": "Take after food"
+      },
+      {
+        "name": "Atorvastatin",
+        "strength": "10 mg",
+        "dose": "1 tablet",
+        "frequency": "Once daily (night)",
+        "duration": "3 months",
+        "instructions": "Take at bedtime"
+      },
+      {
+        "name": "Vitamin D3",
+        "strength": "60,000 IU",
+        "dose": "1 capsule",
+        "frequency": "Once weekly",
+        "duration": "8 weeks",
+        "instructions": "Take after food"
+      },
+      {
+        "name": "Amlodipine",
+        "strength": "5 mg",
+        "dose": "1 tablet",
+        "frequency": "Once daily (morning)",
+        "duration": "3 months",
+        "instructions": "Monitor BP regularly"
+      }
+    ],
+    "medication_notice": "Do not stop or change any medication without consulting your doctor. Report any side effects or unusual symptoms.",
+    "dietary_recommendations": [
+      "Follow a balanced diet with more vegetables, fruits and whole grains.",
+      "Reduce intake of refined carbohydrates (white rice, maida, sugary foods).",
+      "Avoid deep fried and high-fat foods.",
+      "Increase water intake (2–3 liters/day), unless medically restricted.",
+      "Include sources of vitamin D (milk, eggs, fish) and calcium.",
+      "Limit salt intake and avoid processed foods."
+    ],
+    "lifestyle_steps": [
+      "Exercise for at least 30 minutes daily (e.g. brisk walking).",
+      "Maintain healthy body weight.",
+      "Monitor blood sugar and blood pressure at home.",
+      "Avoid smoking and limit alcohol.",
+      "Ensure adequate sleep (7–8 hours).",
+      "Follow dietary recommendations and medication adherence."
+    ],
+    "next_appointment": {
+      "date": "06 Nov 2026",
+      "time": "10:00 AM",
+      "location": "Clavis Medical Clinic, Kannur, Kerala",
+      "note": "4 weeks"
+    },
+    "additional_tests": [
+      {
+        "name": "Fasting Blood Sugar (FBS)",
+        "purpose": "Monitor glucose control"
+      },
+      {
+        "name": "HbA1c",
+        "purpose": "Assess 3-month average glucose"
+      },
+      {
+        "name": "Lipid Profile",
+        "purpose": "Monitor cholesterol and triglycerides"
+      },
+      {
+        "name": "Vitamin D (25-OH)",
+        "purpose": "Check vitamin D levels"
+      },
+      {
+        "name": "Liver Function Test (LFT)",
+        "purpose": "Monitor liver function"
+      },
+      {
+        "name": "Kidney Function Test (KFT)",
+        "purpose": "Monitor kidney function"
+      },
+      {
+        "name": "Urine Routine Examination",
+        "purpose": "Check for protein/sugar in urine"
+      }
+    ],
+    "notes": [
+      "Repeat blood tests before next visit as advised by your clinician.",
+      "Contact the clinic if you experience side effects or unusual symptoms.",
+      "This treatment plan is based on current clinical assessment and may be adjusted as needed."
+    ],
+    "signature": {
+      "display_name": "Dr. Arun Nair"
+    },
+    "references": [],
+    "disclaimer": "This plan summarizes the clinician's recommendations and does not replace urgent medical assessment when needed."
+  }
+}

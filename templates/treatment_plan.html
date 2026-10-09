@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ plan.title or 'Personalized Care Plan' }} — {{ patient.name }}</title>
+  <link rel="stylesheet" href="static/treatment-plan.css">
+</head>
+<body>
+  <header class="running-header">
+    <img class="brand-logo" src="static/assets/brand/clavis-logo.png" alt="Clavis Medical Scribe">
+    <div class="header-promise"><span>Clear notes.</span><strong>Better care.</strong><i></i></div>
+  </header>
+  <footer class="running-footer">
+    <div class="footer-clinic"><strong>{{ clinic.name or 'Clavis Medical Clinic' }}</strong></div>
+    
+  </footer>
+
+  <main>
+    <section class="document-intro">
+      <div class="eyebrow"><span></span> PERSONALIZED CARE</div>
+      <h1>{{ plan.title or 'Personalized Care Plan' }}</h1>
+      <p class="subtitle">{{ plan.subtitle or 'A considered summary of your diagnosis, treatment, test results and next steps.' }}</p>
+    </section>
+
+    <section class="care-team">
+      <div class="person-card">
+        <div class="asset-icon"><img src="static/assets/icons/doctor.svg" alt=""></div>
+        <div class="person-copy"><span class="micro-label">TREATING PHYSICIAN</span><strong>{{ doctor.name or 'Treating Doctor' }}</strong>
+          {% if doctor.credentials %}<span>{{ doctor.credentials }}</span>{% endif %}
+          {% if doctor.registration_number %}<span>Registration {{ doctor.registration_number }}</span>{% endif %}
+        </div>
+      </div>
+      <div class="person-card clinic-card">
+        <div class="asset-icon"><img src="static/assets/icons/clinic.svg" alt=""></div>
+        <div class="person-copy"><span class="micro-label">CARE LOCATION</span><strong>{{ clinic.name or 'Clavis Medical Clinic' }}</strong>
+          {% if clinic.address %}<span>{{ clinic.address }}</span>{% endif %}
+          {% if clinic.phone %}<span>{{ clinic.phone }}</span>{% endif %}
+          {% if clinic.email %}<span>{{ clinic.email }}</span>{% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="patient-overview">
+      <div class="patient-field primary-field"><span>Patient</span><strong>{{ patient.name }}</strong></div>
+      <div class="patient-field"><span>Patient ID</span><strong>{{ patient.id or '—' }}</strong></div>
+      <div class="patient-field"><span>Age / Gender</span><strong>{% if patient.age %}{{ patient.age }}{% else %}—{% endif %}{% if patient.gender %} / {{ patient.gender }}{% endif %}</strong></div>
+      <div class="patient-field"><span>Phone</span><strong>{{ patient.phone or '—' }}</strong></div>
+      <div class="patient-field"><span>Plan date</span><strong>{{ plan.date or '—' }}</strong></div>
+      <div class="patient-field"><span>Plan reference</span><strong>{{ plan.id or '—' }}</strong></div>
+    </section>
+
+    {% if plan.diagnoses %}
+    <section class="report-section">
+      <h2><span class="section-index">01</span><span>Diagnosis</span><span class="section-line"></span></h2>
+      <div class="feature-panel diagnosis-panel">
+        <div class="feature-icon"><img src="static/assets/icons/diagnosis.svg" alt=""></div>
+        <ul class="diagnosis-list">{% for diagnosis in plan.diagnoses %}<li>{% if diagnosis.name is defined %}<strong>{{ diagnosis.name }}</strong>{% if diagnosis.details %}<span> — {{ diagnosis.details }}</span>{% endif %}{% else %}{{ diagnosis }}{% endif %}</li>{% endfor %}</ul>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if plan.lab_results %}
+    <section class="report-section">
+      <h2><span class="section-index">02</span><span>Test results</span><span class="section-line"></span></h2>
+      <table class="data-table lab-table"><thead><tr><th>Test</th><th>Result</th><th>Reference range</th><th>Unit</th><th>Status</th></tr></thead><tbody>
+      {% for item in plan.lab_results %}<tr><td>{{ item.name }}</td><td class="result-value">{{ item.result }}</td><td>{{ item.reference_range or '—' }}</td><td>{{ item.unit or '—' }}</td><td><span class="status status-{{ (item.status or 'normal')|lower|replace(' ', '-') }}">{{ item.status or '—' }}</span></td></tr>{% endfor %}
+      </tbody></table>
+      {% if plan.lab_summary %}<div class="insight-panel"><div class="insight-icon"><img src="static/assets/icons/summary-white.svg" alt=""></div><div><span class="micro-label">CLINICAL SUMMARY</span><p>{{ plan.lab_summary }}</p></div></div>{% endif %}
+    </section>
+    {% endif %}
+
+    {% if plan.medications %}
+    <section class="report-section">
+      <h2><span class="section-index">03</span><span>Medications</span><span class="section-line"></span></h2>
+      <table class="data-table medication-table"><thead><tr><th>Medicine</th><th>Dose</th><th>Frequency</th><th>Duration</th><th>Instructions</th></tr></thead><tbody>
+      {% for item in plan.medications %}<tr><td><strong>{{ item.name }}</strong>{% if item.strength %}<span class="subcell">{{ item.strength }}</span>{% endif %}</td><td>{{ item.dose or '—' }}</td><td>{{ item.frequency or '—' }}</td><td>{{ item.duration or '—' }}</td><td>{{ item.instructions or '—' }}</td></tr>{% endfor %}
+      </tbody></table>
+      {% if plan.medication_notice %}<div class="notice-panel"><img src="static/assets/icons/important.svg" alt=""><div><strong>Medication safety</strong><p>{{ plan.medication_notice }}</p></div></div>{% endif %}
+    </section>
+    {% endif %}
+
+    {% if plan.dietary_recommendations %}
+    <section class="report-section">
+      <h2><span class="section-index">04</span><span>Dietary recommendations</span><span class="section-line"></span></h2>
+      <div class="feature-panel list-panel"><div class="feature-icon"><img src="static/assets/icons/diet.svg" alt=""></div><ul class="check-list">{% for item in plan.dietary_recommendations %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    </section>
+    {% endif %}
+
+    {% if plan.lifestyle_steps %}
+    <section class="report-section">
+      <h2><span class="section-index">05</span><span>Lifestyle &amp; next steps</span><span class="section-line"></span></h2>
+      <div class="feature-panel list-panel lifestyle-panel"><div class="feature-icon feature-icon-stack"><img class="lifestyle-symbol" src="static/assets/icons/lifestyle.svg" alt=""><span class="icon-separator"></span><img class="next-steps-symbol" src="static/assets/icons/next-steps.svg" alt=""></div><ol class="number-list">{% for item in plan.lifestyle_steps %}<li>{{ item }}</li>{% endfor %}</ol></div>
+    </section>
+    {% endif %}
+
+    {% if plan.next_appointment %}
+    <section class="report-section">
+      <h2><span class="section-index">06</span><span>Next appointment</span><span class="section-line"></span></h2>
+      <div class="appointment-panel"><div class="appointment-icon"><img src="static/assets/icons/calendar.svg" alt=""></div>
+        <div class="appointment-field"><span>Date</span><strong>{{ plan.next_appointment.date or 'To be confirmed' }}</strong>{% if plan.next_appointment.note %}<small>{{ plan.next_appointment.note }}</small>{% endif %}</div>
+        <div class="appointment-field"><span>Time</span><strong>{{ plan.next_appointment.time or 'To be confirmed' }}</strong></div>
+        <div class="appointment-field"><span>Location</span><strong>{{ plan.next_appointment.location or clinic.name or 'Contact clinic' }}</strong></div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if plan.additional_tests %}
+    <section class="report-section">
+      <h2><span class="section-index">07</span><span>Additional tests</span><span class="section-note">Before next visit</span><span class="section-line"></span></h2>
+      <table class="data-table additional-table"><thead><tr><th>Test</th><th>Purpose</th></tr></thead><tbody>{% for item in plan.additional_tests %}<tr><td>{{ item.name }}</td><td>{{ item.purpose or '—' }}</td></tr>{% endfor %}</tbody></table>
+    </section>
+    {% endif %}
+
+    {% if plan.notes or plan.signature %}
+    <section class="report-section closing-grid">
+      {% if plan.notes %}<div class="notes-column"><h2><span class="section-index">08</span><span>Notes</span><span class="section-line"></span></h2><div class="feature-panel notes-panel"><div class="feature-icon"><img src="static/assets/icons/notes.svg" alt=""></div><ul class="diagnosis-list">{% for note in plan.notes %}<li>{{ note }}</li>{% endfor %}</ul></div></div>{% endif %}
+      {% if plan.signature %}<div class="signature-card">{% if plan.signature.image_data_uri %}<img class="signature-image" src="{{ plan.signature.image_data_uri }}" alt="Doctor signature">{% else %}<div class="signature-script">{{ plan.signature.display_name or doctor.name }}</div>{% endif %}<div class="signature-rule"></div><strong>{{ plan.signature.display_name or doctor.name }}</strong>{% if doctor.credentials %}<span>{{ doctor.credentials }}</span>{% endif %}{% if doctor.registration_number %}<span>Reg. No. {{ doctor.registration_number }}</span>{% endif %}</div>{% endif %}
+    </section>
+    {% endif %}
+
+    {% if plan.references %}<section class="report-section references"><h2><span class="section-index">09</span><span>References</span><span class="section-line"></span></h2><ol>{% for reference in plan.references %}<li>{{ reference }}</li>{% endfor %}</ol></section>{% endif %}
+    {% if plan.disclaimer %}<p class="disclaimer">{{ plan.disclaimer }}</p>{% endif %}
+  </main>
+</body>
+</html>
