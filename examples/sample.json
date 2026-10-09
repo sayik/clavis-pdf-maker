@@ -1,6 +1,6 @@
 {
   "doctor": {
-    "name": "Dr. Arun Nair",
+    "name": "Dr. Matthew Mether",
     "credentials": "MBBS, MD (Internal Medicine)",
     "registration_number": "KMC 12345",
     "phone": "+91 98765 43210",
@@ -13,7 +13,7 @@
     "email": "clinic@example.invalid"
   },
   "patient": {
-    "name": "John Mathew",
+    "name": "Arun Das",
     "id": "CLV-000567",
     "age": 34,
     "gender": "Male",
